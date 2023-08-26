@@ -18,7 +18,9 @@ return {
   },
   {
     "jay-babu/mason-null-ls.nvim",
-    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, {"black", "isort"}) end,
+    opts = function(_, opts)
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "black", "isort" })
+    end,
   },
   {
     "jay-babu/mason-nvim-dap.nvim",
@@ -30,7 +32,10 @@ return {
   },
   {
     "linux-cultist/venv-selector.nvim",
-    opts = {},
+    opts = { name = {
+      key1 = "venv",
+      key2 = "development-venv",
+    } },
     keys = { { "<leader>lv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
   },
   {
