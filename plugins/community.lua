@@ -18,6 +18,15 @@ return {
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.json" },
   { import = "astrocommunity.pack.yaml" },
+  { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.pack.go" },
+  {
+    -- below overrides the default pack config for python and go
+    "jay-babu/mason-null-ls.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = { "black", "isort", "gofumpt", "goimports" }
+    end,
+  },
   { import = "astrocommunity.colorscheme.rose-pine" },
   { import = "astrocommunity.colorscheme.nightfox-nvim" },
   { import = "astrocommunity.colorscheme.iceberg-vim" },
