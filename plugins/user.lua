@@ -13,7 +13,7 @@ return {
   {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts)
-      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "jedi_language_server", "ruff_lsp" })
+      opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "pyright", "ruff_lsp" })
     end,
   },
   {
@@ -29,6 +29,7 @@ return {
     opts = { name = {
       key1 = "venv",
       key2 = "development-venv",
+      key3 = ".venv",
     } },
     keys = { { "<leader>lv", "<cmd>:VenvSelect<cr>", desc = "Select VirtualEnv" } },
   },
@@ -39,6 +40,15 @@ return {
     config = function(_, opts)
       local path = require("mason-registry").get_package("debugpy"):get_install_path() .. "/venv/bin/python"
       require("dap-python").setup(path, opts)
+      table.insert(require('dap').configurations.python, {
+        type = 'python',
+        request = 'attach',
+        name = 'attach with params',
+        port = 5678,
+        host = 'localhost',
+        justMyCode = false,
+        -- ... more options, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings
+      })
     end,
   },
 }
